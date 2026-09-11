@@ -1,0 +1,31 @@
+[project]
+name = "mini-aios"
+version = "0.1.0"
+description = "Mini AI OS — session 2: RPC, retries, idempotency"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic-settings>=2.6.0",
+    "python-dotenv>=1.0.1",
+    "psycopg[binary]>=3.2.0",
+    "litellm>=1.60.0",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.3.0",
+    "langgraph-checkpoint-sqlite>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.0", "httpx>=0.27.0"]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["api*", "core*", "worker*", "chaos*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
